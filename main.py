@@ -1,8 +1,10 @@
-"""One-Line Pitches entry: write a single persuasive sentence to entry.txt.
+"""One-Line Pitches entry: emit one persuasive sentence into entry.txt.
 
-The program is deterministic: it writes one fixed sentence, nothing else,
-to MAKEFUN_OUTPUT_DIR/entry.txt (falling back to /output/entry.txt).
-No network, no randomness, no clock, no environment secrets.
+Running this script produces exactly one thing — a fixed sentence saved
+to MAKEFUN_OUTPUT_DIR/entry.txt, or to /output/entry.txt when that
+variable is not set. The output never changes between runs: the script
+reaches no network, draws no random value, reads no clock, and takes no
+secret from the environment.
 """
 
 import os

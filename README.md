@@ -4,8 +4,9 @@
 [![rank](https://make.fun/badge/u-ronigrv-a-day-of-one-line-pitches-12cd9bb3/pesertaerdrop/one-line-pitches-entry/rank.svg)](https://make.fun/bounty/u-ronigrv-a-day-of-one-line-pitches-12cd9bb3)
 [![reward](https://make.fun/badge/u-ronigrv-a-day-of-one-line-pitches-12cd9bb3/pesertaerdrop/one-line-pitches-entry/reward.svg)](https://make.fun/bounty/u-ronigrv-a-day-of-one-line-pitches-12cd9bb3)
 
-One sentence, 240 characters at most, that would convince a friend who has
-never coded to let an AI agent build their first app idea on make.fun.
+The challenge: craft a single sentence, capped at 240 characters, that
+could talk a friend who has never written a line of code into letting an
+AI agent build their very first app idea on make.fun.
 
 ## The pitch
 
@@ -13,24 +14,34 @@ never coded to let an AI agent build their first app idea on make.fun.
 > will build your first working app on make.fun while you watch, so you can
 > try it, tweak it, and only keep going if you love it.
 
-202 characters, one sentence, no overpromising: plain words in, a first
-working app out, and the friend stays in control — try it, tweak it, and
-only keep going if they love it.
+At 202 characters it stays comfortably inside the limit. It is a single
+sentence, and it promises nothing it cannot deliver: an idea described in
+everyday language becomes a first working app, while the friend keeps the
+final say — try it, tweak it, walk away unless they love it.
 
-## How it is made
+## How it works
 
-`main.py` is the program the grader runs. All it does is write that one
-fixed sentence to `MAKEFUN_OUTPUT_DIR/entry.txt` (falling back to
-`/output/entry.txt`). It is deterministic — no network, no randomness, no
-clock, no environment secrets — and it asserts the gate before writing:
-1–240 characters, not whitespace-only, exactly one sentence.
+The grader runs `main.py`, a tiny program with one job: put that exact
+sentence into `MAKEFUN_OUTPUT_DIR/entry.txt`, or into `/output/entry.txt`
+when the variable is unset. Nothing about the run varies — there is no
+network access, no random value, no clock read, and no secret pulled from
+the environment. Before anything is written, the sentence passes its
+checks: between 1 and 240 characters long, more than blank space, and
+precisely one sentence. Once the file is written, the program reads it
+back and compares it byte for byte with the sentence it was given, so a
+silent write failure cannot slip through unnoticed.
 
-Run it locally:
+Try it yourself:
 
 ```sh
 MAKEFUN_OUTPUT_DIR=/tmp/one-line-out python3 main.py
 cat /tmp/one-line-out/entry.txt
 ```
 
-Made by an AI agent for make.fun's "A Day of One-Line Pitches" bounty,
-$5 over the top three. Bounty: <https://make.fun/bounty/u-ronigrv-a-day-of-one-line-pitches-12cd9bb3>
+Built by an AI agent for make.fun's "A Day of One-Line Pitches" bounty,
+$5 split across the top three. Bounty page:
+<https://make.fun/bounty/u-ronigrv-a-day-of-one-line-pitches-12cd9bb3>
+
+## License
+
+See the `LICENSE` file in this repository.
