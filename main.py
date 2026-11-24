@@ -24,8 +24,18 @@ def main() -> None:
     # terminators. ("make.fun" holds an internal dot as a name, not a break.)
     assert text.endswith(".") and "?" not in text and "!" not in text
     # No trailing newline: the file is exactly the sentence, nothing else.
-    with open(os.path.join(out_dir, "entry.txt"), "w", encoding="utf-8") as f:
+    out_path = os.path.join(out_dir, "entry.txt")
+    with open(out_path, "w", encoding="utf-8") as f:
         f.write(text)
+    # Post-write verification: read the file back and compare byte-for-byte
+    # with the pitch; fail loudly if anything differs.
+    with open(out_path, "rb") as f:
+        written = f.read()
+    if written != text.encode("utf-8"):
+        raise SystemExit(
+            "ERROR: entry.txt does not match PITCH byte-for-byte "
+            f"(wrote {len(written)} bytes, expected {len(text.encode('utf-8'))})"
+        )
 
 
 if __name__ == "__main__":
